@@ -22,14 +22,15 @@
             android:layout_centerVertical="true"
             android:onClick="decreaseScore" />
 
-        <TextView
+        <EditText
             style="@style/TeamText"
+            android:id="@+id/team1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/score1"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:text="@string/team_1" />
+
+            android:hint="@string/team_1" />
 
         <TextView
             android:id="@+id/score1"
@@ -38,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="0" />
+            android:text="@string/zero" />
 
         <ImageButton
             android:id="@+id/increaseTeam1"
@@ -68,13 +69,14 @@
             android:layout_centerVertical="true"
             android:onClick="decreaseScore" />
 
-        <TextView
+        <EditText
             style="@style/TeamText"
+            android:id="@+id/team2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:text="Team 2" />
+            android:hint="@string/team_2" />
 
         <TextView
             android:id="@+id/score2"
@@ -83,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="0" />
+            android:text="@string/zero" />
 
         <ImageButton
             android:id="@+id/increaseTeam2"

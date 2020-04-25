@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,10 +16,16 @@ public class MainActivity extends AppCompatActivity {
 
     static final String STATE_SCORE_1 = "Team 1 Score";
     static final String STATE_SCORE_2 = "Team 2 Score";
+    static final String STATE_NAME_1 = "Team 1 Name";
+    static final String STATE_NAME_2 = "Team 2 Name";
     private int mScore1;
     private int mScore2;
+    private String mTeamName1;
+    private String mTeamName2;
     private TextView mScoreText1;
     private TextView mScoreText2;
+    private EditText mTeamNameText1;
+    private EditText mTeamNameText2;
     private SharedPreferences mPreferences;
     private String sharedPrefFile = "com.guillaumegonnet.scorekeeper";
 
@@ -28,22 +35,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mScoreText1 = findViewById(R.id.score1);
         mScoreText2 = findViewById(R.id.score2);
+        mTeamNameText1 = findViewById(R.id.team1);
+        mTeamNameText2 = findViewById(R.id.team2);
 
         mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
 
         if (mPreferences != null) {
             mScore1 = mPreferences.getInt(STATE_SCORE_1, 0);
             mScore2 = mPreferences.getInt(STATE_SCORE_2, 0);
-            mScoreText1.setText(String.valueOf(mScore1));
-            mScoreText2.setText(String.valueOf(mScore2));
-        }
+            mTeamName1 = mPreferences.getString(STATE_NAME_1, getString(R.string.team_1));
+            mTeamName2 = mPreferences.getString(STATE_NAME_2, getString(R.string.team_2));
 
-        /*if (savedInstanceState != null) {
-            mScore1 = savedInstanceState.getInt(STATE_SCORE_1);
-            mScore2 = savedInstanceState.getInt(STATE_SCORE_2);
             mScoreText1.setText(String.valueOf(mScore1));
             mScoreText2.setText(String.valueOf(mScore2));
-        }*/
+            mTeamNameText1.setText(mTeamName1);
+            mTeamNameText2.setText(mTeamName2);
+        }
     }
 
     @Override
@@ -63,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.night_mode) {
-// Get the night mode state of the app.
+            // Get the night mode state of the app.
             int nightMode = AppCompatDelegate.getDefaultNightMode();
             //Set the theme mode for the restarted activity
             if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
@@ -78,15 +85,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /* replaced by SharedPreferences
-        @Override
-        protected void onSaveInstanceState(@NonNull Bundle outState) {
-            // save the scores
-            outState.putInt(STATE_SCORE_1, mScore1);
-            outState.putInt(STATE_SCORE_2, mScore2);
-            super.onSaveInstanceState(outState);
-        }
-    */
     public void decreaseScore(View view) {
         int viewId = view.getId();
         switch (viewId) {
@@ -121,6 +119,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = mPreferences.edit();
         editor.putInt(STATE_SCORE_1, mScore1);
         editor.putInt(STATE_SCORE_2, mScore2);
+        editor.putString(STATE_NAME_1, mTeamName1);
+        editor.putString(STATE_NAME_2, mTeamName2);
         editor.apply();
     }
 

@@ -30,6 +30,7 @@
 
     <style name="TeamText">
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Display1</item>
+        <item name="android:inputType">text</item>
     </style>
 
 </resources>

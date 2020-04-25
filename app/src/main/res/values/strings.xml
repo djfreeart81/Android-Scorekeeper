@@ -7,4 +7,6 @@
     <string name="night_mode">Night Mode</string>
     <string name="day_mode">Day Mode</string>
     <string name="reset_btn">Reset</string>
+    <string name="zero">0</string>
+    <string name="team_2">Team 2</string>
 </resources>
