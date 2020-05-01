@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -16,16 +17,21 @@ public class MainActivity extends AppCompatActivity {
 
     static final String STATE_SCORE_1 = "Team 1 Score";
     static final String STATE_SCORE_2 = "Team 2 Score";
+    static final String STATE_SCORE_1_BEFORE = "Team 1 Score Before";
+    static final String STATE_SCORE_2_BEFORE = "Team 2 Score Before";
     static final String STATE_NAME_1 = "Team 1 Name";
     static final String STATE_NAME_2 = "Team 2 Name";
     private int mScore1;
+    private int mScore1Before; //store the last score
     private int mScore2;
+    private int mScore2Before; //store the last score
     private String mTeamName1;
     private String mTeamName2;
     private TextView mScoreText1;
     private TextView mScoreText2;
     private EditText mTeamNameText1;
     private EditText mTeamNameText2;
+    private Button mCancelBtn;
     private SharedPreferences mPreferences;
     private String sharedPrefFile = "com.guillaumegonnet.scorekeeper";
 
@@ -37,12 +43,15 @@ public class MainActivity extends AppCompatActivity {
         mScoreText2 = findViewById(R.id.score2);
         mTeamNameText1 = findViewById(R.id.team1);
         mTeamNameText2 = findViewById(R.id.team2);
+        mCancelBtn = findViewById(R.id.cancel_btn);
 
         mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
 
         if (mPreferences != null) {
             mScore1 = mPreferences.getInt(STATE_SCORE_1, 0);
             mScore2 = mPreferences.getInt(STATE_SCORE_2, 0);
+            mScore1Before = mPreferences.getInt(STATE_SCORE_1_BEFORE, 0);
+            mScore2Before = mPreferences.getInt(STATE_SCORE_2_BEFORE, 0);
             mTeamName1 = mPreferences.getString(STATE_NAME_1, getString(R.string.team_1));
             mTeamName2 = mPreferences.getString(STATE_NAME_2, getString(R.string.team_2));
 
@@ -84,9 +93,13 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    //TODO: replace button by individual for each case (1 to 7 points)
     public void decreaseScore(View view) {
+        mScore1Before = mScore1;
+        mScore2Before = mScore2;
+        mCancelBtn.setEnabled(true);
+
         int viewId = view.getId();
+
         switch (viewId) {
             case R.id.decreaseTeam1:
                 mScore1--;
@@ -148,7 +161,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void increaseScore(View view) {
+        mScore1Before = mScore1;
+        mScore2Before = mScore2;
+        mCancelBtn.setEnabled(true);
+
         int viewId = view.getId();
+
         switch (viewId) {
             case R.id.increaseTeam1:
                 mScore1++;
@@ -215,9 +233,12 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = mPreferences.edit();
         editor.putInt(STATE_SCORE_1, mScore1);
         editor.putInt(STATE_SCORE_2, mScore2);
+        editor.putInt(STATE_SCORE_1_BEFORE, mScore1Before);
+        editor.putInt(STATE_SCORE_2_BEFORE, mScore2Before);
         editor.putString(STATE_NAME_1, mTeamName1);
         editor.putString(STATE_NAME_2, mTeamName2);
         editor.apply();
+
     }
 
     public void resetScores(View view) {
@@ -232,5 +253,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void cancelLastAction(View view) {
+        mScore2 = mScore2Before;
+        mScore1 = mScore1Before;
+        mScoreText1.setText(String.valueOf(mScore1));
+        mScoreText2.setText(String.valueOf(mScore2));
+        mCancelBtn.setEnabled(false);
     }
 }
