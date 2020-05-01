@@ -82,9 +82,9 @@ public class MainActivity extends AppCompatActivity {
             recreate();
         }
         return true;
-
     }
 
+    //TODO: replace button by individual for each case (1 to 7 points)
     public void decreaseScore(View view) {
         int viewId = view.getId();
         switch (viewId) {
@@ -92,8 +92,56 @@ public class MainActivity extends AppCompatActivity {
                 mScore1--;
                 mScoreText1.setText(String.valueOf(mScore1));
                 break;
+            case R.id.decreaseTeam1By2:
+                mScore1 -= 2;
+                mScoreText1.setText(String.valueOf(mScore1));
+                break;
+            case R.id.decreaseTeam1By3:
+                mScore1 -= 3;
+                mScoreText1.setText(String.valueOf(mScore1));
+                break;
+            case R.id.decreaseTeam1By4:
+                mScore1 -= 4;
+                mScoreText1.setText(String.valueOf(mScore1));
+                break;
+            case R.id.decreaseTeam1By5:
+                mScore1 -= 5;
+                mScoreText1.setText(String.valueOf(mScore1));
+                break;
+            case R.id.decreaseTeam1By6:
+                mScore1 -= 6;
+                mScoreText1.setText(String.valueOf(mScore1));
+                break;
+            case R.id.decreaseTeam1By7:
+                mScore1 -= 7;
+                mScoreText1.setText(String.valueOf(mScore1));
+                break;
             case R.id.decreaseTeam2:
                 mScore2--;
+                mScoreText2.setText(String.valueOf(mScore2));
+                break;
+            case R.id.decreaseTeam2By2:
+                mScore2 -= 2;
+                mScoreText2.setText(String.valueOf(mScore2));
+                break;
+            case R.id.decreaseTeam2By3:
+                mScore2 -= 3;
+                mScoreText2.setText(String.valueOf(mScore2));
+                break;
+            case R.id.decreaseTeam2By4:
+                mScore2 -= 4;
+                mScoreText2.setText(String.valueOf(mScore2));
+                break;
+            case R.id.decreaseTeam2By5:
+                mScore2 -= 5;
+                mScoreText2.setText(String.valueOf(mScore2));
+                break;
+            case R.id.decreaseTeam2By6:
+                mScore2 -= 6;
+                mScoreText2.setText(String.valueOf(mScore2));
+                break;
+            case R.id.decreaseTeam2By7:
+                mScore2 -= 7;
                 mScoreText2.setText(String.valueOf(mScore2));
                 break;
         }
@@ -106,8 +154,56 @@ public class MainActivity extends AppCompatActivity {
                 mScore1++;
                 mScoreText1.setText(String.valueOf(mScore1));
                 break;
+            case R.id.increaseTeam1By2:
+                mScore1 += 2;
+                mScoreText1.setText(String.valueOf(mScore1));
+                break;
+            case R.id.increaseTeam1By3:
+                mScore1 += 3;
+                mScoreText1.setText(String.valueOf(mScore1));
+                break;
+            case R.id.increaseTeam1By4:
+                mScore1 += 4;
+                mScoreText1.setText(String.valueOf(mScore1));
+                break;
+            case R.id.increaseTeam1By5:
+                mScore1 += 5;
+                mScoreText1.setText(String.valueOf(mScore1));
+                break;
+            case R.id.increaseTeam1By6:
+                mScore1 += 6;
+                mScoreText1.setText(String.valueOf(mScore1));
+                break;
+            case R.id.increaseTeam1By7:
+                mScore1 += 7;
+                mScoreText1.setText(String.valueOf(mScore1));
+                break;
             case R.id.increaseTeam2:
                 mScore2++;
+                mScoreText2.setText(String.valueOf(mScore2));
+                break;
+            case R.id.increaseTeam2By2:
+                mScore2 += 2;
+                mScoreText2.setText(String.valueOf(mScore2));
+                break;
+            case R.id.increaseTeam2By3:
+                mScore2 += 3;
+                mScoreText2.setText(String.valueOf(mScore2));
+                break;
+            case R.id.increaseTeam2By4:
+                mScore2 += 4;
+                mScoreText2.setText(String.valueOf(mScore2));
+                break;
+            case R.id.increaseTeam2By5:
+                mScore2 += 5;
+                mScoreText2.setText(String.valueOf(mScore2));
+                break;
+            case R.id.increaseTeam2By6:
+                mScore2 += 6;
+                mScoreText2.setText(String.valueOf(mScore2));
+                break;
+            case R.id.increaseTeam2By7:
+                mScore2 += 7;
                 mScoreText2.setText(String.valueOf(mScore2));
                 break;
         }
@@ -133,5 +229,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = mPreferences.edit();
         editor.clear();
         editor.apply();
+    }
+
+    public void cancelLastAction(View view) {
     }
 }
